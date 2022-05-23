@@ -5,35 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void PlayGame(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene("SampleScene");
+    public void QuitGame(){
+        Application.Quit();
     }
 
-    public void RestartGame()
-    {
-        SceneManager.LoadScene("SampleScene");
+    public void SettingsPage(){
+        SceneManager.LoadScene("Settings");
     }
 
-    public void Instructions()
-    {
-        SceneManager.LoadScene("Instructions");
-    }
-
-    public void StartMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void StoryMenu()
-    {
-        SceneManager.LoadScene("Story");
+    public void MenuScreen(){
+        SceneManager.LoadScene("MainMenu");
     }
 }
