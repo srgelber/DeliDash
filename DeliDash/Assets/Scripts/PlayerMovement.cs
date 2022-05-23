@@ -24,6 +24,15 @@ public class PlayerMovement : MonoBehaviour
     private CapsuleCollider cap;
 
     private AudioSource jumpSound;
+
+    float doubleTap;
+    KeyCode lastCode;
+    public float dashSpeed;
+    private float dashCount;
+    public float startDashCount;
+    private int side;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
         cap = GetComponent<CapsuleCollider>();
         jumpSound = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
+
+        dashCount = startDashCount;
     }
 
     // Update is called once per frame
@@ -81,10 +92,62 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if (side == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                if (doubleTap > Time.time && (lastCode == KeyCode.LeftArrow || lastCode == KeyCode.A))
+                {
+                    side = 1;
+                }
+                else
+                {
+                    doubleTap = Time.time + 0.5f;
+                }
+
+                lastCode = KeyCode.A;
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                if (doubleTap > Time.time && (lastCode == KeyCode.RightArrow || lastCode == KeyCode.D))
+                {
+                    side = -1;
+                }
+                else
+                {
+                    doubleTap = Time.time + 0.5f;
+                }
+
+                lastCode = KeyCode.D;
+            }
+        }
+        else
+        {
+            if (dashCount <= 0)
+            {
+                side = 0;
+                dashCount = startDashCount;
+                rb.velocity = Vector2.zero;
+            }
+            else
+            {
+                dashCount -= Time.deltaTime;
+
+                if(side == 1)
+                {
+                    rb.velocity = Vector2.left * dashSpeed;
+                }
+                else if (side == -1)
+                {
+                    rb.velocity = Vector2.right * dashSpeed;
+                }
+            }
+            
         }
     }
 
