@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject leftLight;
     public GameObject rightLight;
 
+    private SpriteRenderer sr;
+
     private CapsuleCollider cap;
 
     private AudioSource jumpSound;
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         cap = GetComponent<CapsuleCollider>();
         jumpSound = GetComponent<AudioSource>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -51,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 
                 facingRight = false;
-                transform.Rotate(0f, 180f, 0f);
+                sr.flipX = true;
+                //transform.Rotate(0f, 180f, 0f);
             }
         }
 
@@ -60,7 +64,8 @@ public class PlayerMovement : MonoBehaviour
             if (!facingRight)
             {
                 
-                transform.Rotate(0f, -180f, 0f);
+                //transform.Rotate(0f, -180f, 0f);
+                sr.flipX = false;
                 facingRight = true;
             }
         }
