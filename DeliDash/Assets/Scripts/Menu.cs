@@ -20,4 +20,8 @@ public class Menu : MonoBehaviour
     public void MenuScreen(){
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void GameOver(){
+        SceneManager.LoadScene("Demo");
+    }
 }
