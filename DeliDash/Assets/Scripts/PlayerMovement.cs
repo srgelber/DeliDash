@@ -44,12 +44,22 @@ public class PlayerMovement : MonoBehaviour
         dashCount = startDashCount;
     }
 
+    private void FixedUpdate() {
+        Move = Input.GetAxis("Horizontal");
+
+        if(rb.velocity.magnitude > 0.2){
+            anim.SetBool("isMoving", true);
+        }else{
+            anim.SetBool("isMoving", false);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         Move = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(speed*Move,rb.velocity.y);
+
 
         if(Input.GetButtonDown("Jump") && jumpCount < 2){
             anim.SetTrigger("isJumping");
