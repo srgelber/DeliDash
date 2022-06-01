@@ -102,11 +102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2316d5a8d1dfb4345bf590651645ff0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 9
   jump: 400
   rb: {fileID: 3273755036917133955}
   leftLight: {fileID: 0}
   rightLight: {fileID: 0}
+  dashSpeed: 25
+  startDashCount: 0.2
 --- !u!114 &3273755036917133959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +135,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 96
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!136 &3273755036917133952
 CapsuleCollider:
@@ -142,13 +144,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3273755036917133965}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7f46d83c4637ae043911770f5b6c7fe3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.89
-  m_Height: 0.53
-  m_Direction: 1
-  m_Center: {x: -0.03, y: -0.78, z: 0}
+  m_Radius: 0.63
+  m_Height: 3.06
+  m_Direction: 0
+  m_Center: {x: -0.039653778, y: -0.87, z: -0.02}
 --- !u!95 &3273755036917133957
 Animator:
   serializedVersion: 3

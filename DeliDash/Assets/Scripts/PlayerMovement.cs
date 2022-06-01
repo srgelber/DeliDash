@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate() {
         Move = Input.GetAxis("Horizontal");
 
-        if(rb.velocity.magnitude > 0.2){
+        if(rb.velocity.magnitude > 1){
             anim.SetBool("isMoving", true);
         }else{
             anim.SetBool("isMoving", false);
