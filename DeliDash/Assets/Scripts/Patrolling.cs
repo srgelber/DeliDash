@@ -17,7 +17,7 @@ public class Patrolling : MonoBehaviour
     void Start()
     {
         waypointIndex = 0;   
-        transform.LookAt(waypoints[waypointIndex].position);
+        //transform.LookAt(waypoints[waypointIndex].position);
     }
 
     void Update()
@@ -42,7 +42,7 @@ public class Patrolling : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collided with " + collision.gameObject.name);
-        isPatrolling = false;
+        //isPatrolling = false;
     }
 
     void IncreaseIndex()
@@ -52,7 +52,7 @@ public class Patrolling : MonoBehaviour
         {
             waypointIndex = 0;
         }
-        transform.LookAt(waypoints[waypointIndex].position);
+        //transform.LookAt(waypoints[waypointIndex].position);
     }
 
 }

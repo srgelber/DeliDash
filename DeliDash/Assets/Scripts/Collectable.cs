@@ -32,6 +32,24 @@ public class Collectable : MonoBehaviour
                 toppings.AddTopping(_spriteLib.lettuce, _spriteLib.numTopping);
                 _spriteLib.numTopping += 1;
             }
+            
+            else if (this.tag == "Ham")
+            {
+                toppings.AddTopping(_spriteLib.ham, _spriteLib.numTopping);
+                _spriteLib.numTopping += 1;
+            }
+
+            else if (this.tag == "Chicken")
+            {
+                toppings.AddTopping(_spriteLib.chicken, _spriteLib.numTopping);
+                _spriteLib.numTopping += 1;
+            }
+
+            else if (this.tag == "Bacon")
+            {
+                toppings.AddTopping(_spriteLib.bacon, _spriteLib.numTopping);
+                _spriteLib.numTopping += 1;
+            }
 
             gameObject.SetActive(false);
         }

@@ -173,5 +173,10 @@ public class PlayerMovement : MonoBehaviour
             startDashCount = 0.2f;
             dashSpeed = 25;
         }
+
+        /*if (other.tag == "Chicken")
+        {
+            jumpCount = 2;
+        }*/
     }
 }

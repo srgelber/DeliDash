@@ -9,6 +9,9 @@ TagManager:
   - Cheese
   - Tomato
   - Lettuce
+  - Ham
+  - Bacon
+  - Chicken
   layers:
   - Default
   - TransparentFX
