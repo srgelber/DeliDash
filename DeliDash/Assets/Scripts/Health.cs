@@ -32,4 +32,9 @@ public class Health : MonoBehaviour
            //player dead
        }
    }
+
+   public void AddHealth(float val)
+   {
+       currentHealth = Mathf.Clamp(currentHealth + val, 0, startingHealth);
+   }
 }

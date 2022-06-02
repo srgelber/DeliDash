@@ -18,11 +18,11 @@ public class EnemyFire : MonoBehaviour
         
     // }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.tag == "Player")
+        if(other.tag == "Player")
         {
-            collision.GetComponent<Health>().TakeDamage(damage);
+            other.GetComponent<Health>().TakeDamage(damage);
         }
     }
 }
