@@ -6,13 +6,11 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
     public float currentHealth;
-    
-
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = startingHealth;
     }
 
     // Update is called once per frame
@@ -21,22 +19,17 @@ public class Health : MonoBehaviour
         
     }
 
-    private void Awake()
-    {
-        currentHealth = startingHealth;
-    }
+   public void TakeDamage(float dmg)
+   {
+       currentHealth = Mathf.Clamp(currentHealth - dmg, 0, startingHealth);
 
-    public void TakeDamage(float _damage)
-    {
-        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
-
-        if (currentHealth > 0)
-        {
-            //damage taken
-        }
-        else
-        {
-            //dead
-        }
-    }
+       if (currentHealth > 0)
+       {
+           //player damaged
+       }
+       else
+       {
+           //player dead
+       }
+   }
 }
