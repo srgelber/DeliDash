@@ -165,4 +165,13 @@ public class PlayerMovement : MonoBehaviour
         jumpCount = 0;
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Butter")
+        {
+            startDashCount = 0.2f;
+            dashSpeed = 25;
+        }
+    }
 }
