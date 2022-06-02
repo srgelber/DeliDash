@@ -27,6 +27,12 @@ public class Collectable : MonoBehaviour
                 _spriteLib.numTopping += 1;
             }
 
+            else if (this.tag == "Lettuce")
+            {
+                toppings.AddTopping(_spriteLib.lettuce, _spriteLib.numTopping);
+                _spriteLib.numTopping += 1;
+            }
+
             gameObject.SetActive(false);
         }
     }
