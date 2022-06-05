@@ -24,4 +24,8 @@ public class Menu : MonoBehaviour
     public void GameOver(){
         SceneManager.LoadScene("Demo");
     }
+
+    public void Credits(){
+        SceneManager.LoadScene("Credits");
+    }
 }
