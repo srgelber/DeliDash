@@ -12,6 +12,11 @@ public class SpriteLib : MonoBehaviour
     public Sprite chicken;
     public Sprite ham;
     public Sprite bacon;
+    public Sprite avocado;
+    public Sprite onion;
+    public Sprite egg;
+    public Sprite pickles;
+    public Sprite pepper;
 
     public int numTopping = 0;
 
@@ -22,6 +27,9 @@ public class SpriteLib : MonoBehaviour
     public Toppings topping4;
     public Toppings topping5;
     public Toppings topping6;
+    public Toppings topping7;
+    public Toppings topping8;
+    public Toppings topping9;
 
 
     public Toppings GetTopping()
@@ -60,6 +68,22 @@ public class SpriteLib : MonoBehaviour
         {
             return topping6;
         }
+
+        else if (numTopping == 7)
+        {
+            return topping7;
+        }
+
+        else if (numTopping == 8)
+        {
+            return topping8;
+        }
+
+        else if (numTopping == 9)
+        {
+            return topping9;
+        }
+
 
         else
         {

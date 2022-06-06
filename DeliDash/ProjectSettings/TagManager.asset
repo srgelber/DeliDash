@@ -12,6 +12,11 @@ TagManager:
   - Ham
   - Bacon
   - Chicken
+  - Avocado
+  - Onion
+  - Egg
+  - Pickles
+  - Peppers
   layers:
   - Default
   - TransparentFX

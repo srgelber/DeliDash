@@ -14,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
 
     private int jumpCount = 2;
 
+    private int maxJump = 1;
+
+    private int numDashes = 1;
+
     private bool facingRight = true;
 
     public GameObject leftLight;
@@ -31,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashCount;
     public float startDashCount;
     private int side;
+    private Vector2 gravity = Physics.gravity;
 
 
     // Start is called before the first frame update
@@ -61,13 +66,24 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(speed*Move,rb.velocity.y);
 
 
-        if(Input.GetButtonDown("Jump") && jumpCount < 2){
+        if(Input.GetButtonDown("Jump") && jumpCount < maxJump){
             anim.SetTrigger("isJumping");
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             jumpSound.Play();
             rb.AddForce(new Vector2(rb.velocity.x,jump));
             jumpCount++;
             
         }
+
+        /*if (Input.GetButton("Jump") && jumpCount >= 2)
+        {
+            Physics2D.gravity = Vector2.zero;
+            
+            if (Input.GetButtonUp("Jump"))
+            {
+                Physics2D.gravity = gravity;
+            }
+        }*/
 
         if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
@@ -107,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        if (side == 0)
+        if (side == 0 && numDashes == 0)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
@@ -135,6 +151,18 @@ public class PlayerMovement : MonoBehaviour
 
                 lastCode = KeyCode.D;
             }
+            else if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                if (facingRight)
+                {
+                    side = -1;
+                }
+
+                else
+                {
+                    side = 1;
+                }
+            }
         }
         else
         {
@@ -142,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 side = 0;
                 dashCount = startDashCount;
-                rb.velocity = Vector2.zero;
+                //rb.velocity = Vector2.zero;
             }
             else
             {
@@ -156,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rb.velocity = Vector2.right * dashSpeed;
                 }
+                numDashes++;
             }
             
         }
@@ -163,6 +192,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         jumpCount = 0;
+
+        numDashes = 0;
         
     }
 
@@ -174,9 +205,26 @@ public class PlayerMovement : MonoBehaviour
             dashSpeed = 25;
         }
 
-        /*if (other.tag == "Chicken")
+        else if (other.tag == "Chicken")
         {
-            jumpCount = 2;
-        }*/
+            maxJump = 2;
+        }
+
+        else if (other.tag == "Enemy")
+        {
+            rb.velocity = Vector2.zero;
+            if (facingRight)
+            {
+                rb.velocity = Vector2.left * speed;
+                rb.velocity = new Vector2(0, 5);
+            }
+
+            else
+            {
+                rb.velocity = Vector2.right * speed;
+                rb.velocity = new Vector2(0, 5);
+            }
+            
+        }
     }
 }

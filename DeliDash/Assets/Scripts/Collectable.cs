@@ -51,6 +51,36 @@ public class Collectable : MonoBehaviour
                 _spriteLib.numTopping += 1;
             }
 
+            else if (this.tag == "Avocado")
+            {
+                toppings.AddTopping(_spriteLib.avocado, _spriteLib.numTopping);
+                _spriteLib.numTopping += 1;
+            }
+
+            else if (this.tag == "Onion")
+            {
+                toppings.AddTopping(_spriteLib.onion, _spriteLib.numTopping);
+                _spriteLib.numTopping += 1;
+            }
+
+            else if (this.tag == "Egg")
+            {
+                toppings.AddTopping(_spriteLib.egg, _spriteLib.numTopping);
+                _spriteLib.numTopping += 1;
+            }
+
+            else if (this.tag == "Pickles")
+            {
+                toppings.AddTopping(_spriteLib.pickles, _spriteLib.numTopping);
+                _spriteLib.numTopping += 1;
+            }
+
+            else if (this.tag == "Peppers")
+            {
+                toppings.AddTopping(_spriteLib.pepper, _spriteLib.numTopping);
+                _spriteLib.numTopping += 1;
+            }
+
             gameObject.SetActive(false);
         }
     }

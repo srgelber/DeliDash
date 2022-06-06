@@ -5,24 +5,26 @@ using UnityEngine;
 public class EnemyFire : MonoBehaviour
 {
     [SerializeField] private float damage;
-    
-    // // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    // }
 
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
+    public bool invincible = false;
+
+    private IEnumerator Invincibility()
+    {
+        yield return new WaitForSeconds(3);
+        invincible = false;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<Health>().TakeDamage(damage);
+            if (!invincible)
+            {
+                invincible = true;
+                other.GetComponent<Health>().TakeDamage(damage);
+                StartCoroutine(Invincibility());
+            }
         }
     }
+
 }

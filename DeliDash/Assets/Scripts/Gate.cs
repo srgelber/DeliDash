@@ -10,20 +10,39 @@ public class Gate : MonoBehaviour
     
     private bool doorOpen = false;
 
+    private void Start()
+    {
+        StartCoroutine(callChange());
+    }
+
     private void FixedUpdate() {
         transform.position += (velocity * Time.deltaTime);
     }
 
     private IEnumerator callChange()
     {
+        while (!doorOpen)
+        {
         raise();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         stop();
+        //yield return new WaitForSeconds(.1f);
+        lower();
+        yield return new WaitForSeconds(.2f);
+        stop();
+        yield return new WaitForSeconds(1);
+        }
+
     }
 
     void raise()
     {
-        velocity.y = 1;
+        velocity.y = 5;
+    }
+
+    void lower()
+    {
+        velocity.y = -25;
     }
 
     void stop()
