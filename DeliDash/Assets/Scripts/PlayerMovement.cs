@@ -18,16 +18,20 @@ public class PlayerMovement : MonoBehaviour
 
     private int numDashes = 1;
 
+    public isGrounded iG;
     private bool facingRight = true;
 
     public GameObject leftLight;
     public GameObject rightLight;
 
+    public BoxCollider box;
     private SpriteRenderer sr;
 
     private CapsuleCollider cap;
 
     private AudioSource jumpSound;
+
+    public wallstick ws;
 
     float doubleTap;
     KeyCode lastCode;
@@ -38,16 +42,19 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 gravity = Physics.gravity;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         cap = GetComponent<CapsuleCollider>();
+        //box = GetComponent<BoxCollider>();
         jumpSound = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
-
         dashCount = startDashCount;
     }
+
+   
 
     private void FixedUpdate() {
         Move = Input.GetAxis("Horizontal");
@@ -61,9 +68,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move = Input.GetAxis("Horizontal");
+        //add cheese check here
+        if(ws.touchingWall == false){
+            Move = Input.GetAxis("Horizontal");
+        }
 
-        rb.velocity = new Vector2(speed*Move,rb.velocity.y);
+        //add cheese check here
+        if(ws.touchingWall == false){
+            rb.velocity = new Vector2(speed*Move,rb.velocity.y);
+        }
+
+        if(iG.playerGrounded == true){
+            ws.touchingWall = false;
+        }
 
 
         if(Input.GetButtonDown("Jump") && jumpCount < maxJump){
@@ -191,11 +208,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        jumpCount = 0;
 
-        numDashes = 0;
+        if(other.collider.gameObject.tag != "Player"){
+            jumpCount = 0;
+
+            numDashes = 0;
+        }
+        
+        
+        
         
     }
+
+   
 
     private void OnTriggerEnter(Collider other)
     {
