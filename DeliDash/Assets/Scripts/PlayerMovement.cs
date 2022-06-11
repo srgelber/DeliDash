@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private int jumpCount = 2;
 
-    private int maxJump = 1;
+    [SerializeField] private int maxJump = 1;
 
     private int numDashes = 1;
 
@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     public float startDashCount;
     private int side;
     private Vector2 gravity = Physics.gravity;
+
+    [SerializeField] private bool hasCheese = false;
 
 
 
@@ -69,17 +71,19 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //add cheese check here
-        if(ws.touchingWall == false){
+        if(ws.touchingWall == false || hasCheese){
             Move = Input.GetAxis("Horizontal");
         }
 
         //add cheese check here
-        if(ws.touchingWall == false){
+        if(ws.touchingWall == false || hasCheese){
             rb.velocity = new Vector2(speed*Move,rb.velocity.y);
         }
 
         if(iG.playerGrounded == true){
             ws.touchingWall = false;
+            jumpCount = 0;
+            numDashes = 0;
         }
 
 
@@ -209,14 +213,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
 
-        if(other.collider.gameObject.tag != "Player"){
+        if(other.collider.gameObject.tag != "Player" && hasCheese){
             jumpCount = 0;
 
             numDashes = 0;
         }
-        
-        
-        
         
     }
 
@@ -233,6 +234,11 @@ public class PlayerMovement : MonoBehaviour
         else if (other.tag == "Chicken")
         {
             maxJump = 2;
+        }
+
+        else if (other.tag == "Cheese")
+        {
+            hasCheese = true;
         }
 
         else if (other.tag == "Enemy")

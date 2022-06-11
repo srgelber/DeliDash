@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1024,10 +1024,10 @@ MonoBehaviour:
 
     Space to Jump
 
-    Double Jump
+    Double Jump (requires chicken)
 
-    Double tap a direction
-    to dash (requires butter)
+    Shift
+    or Double tap a direction to dash (requires butter)
 
 '
   m_isRightToLeft: 0
