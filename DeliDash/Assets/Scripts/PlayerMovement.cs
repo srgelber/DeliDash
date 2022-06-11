@@ -82,8 +82,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(iG.playerGrounded == true){
             ws.touchingWall = false;
-            jumpCount = 0;
-            numDashes = 0;
+            //jumpCount = 0;
+            //numDashes = 0;
         }
 
 
@@ -213,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
 
-        if(other.collider.gameObject.tag != "Player" && hasCheese){
+        if(other.collider.gameObject.tag != "Player"){
             jumpCount = 0;
 
             numDashes = 0;
