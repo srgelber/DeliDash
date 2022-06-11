@@ -28,4 +28,8 @@ public class Menu : MonoBehaviour
     public void Credits(){
         SceneManager.LoadScene("Credits");
     }
+
+    public void Cut(){
+        SceneManager.LoadScene("Cutscene");
+    }
 }
